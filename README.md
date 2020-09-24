@@ -1,7 +1,6 @@
 # 23peopleTest
-Test with OAuth2 and JWT
 
-# 23PeopleTest
+Test with OAuth2 and JWT
 
 Proyecto cuya findalidad es exponer una API RESTFul con seguridad de autenticacion y autorizacion.
 
@@ -42,38 +41,38 @@ create table oauth_access_token(
   client_id         VARCHAR(255),
   authentication    varbinary(4096),
   refresh_token VARCHAR(255)
-);
+);`
 
-drop table if exists auth_user;
+`drop table if exists auth_user;
 create table auth_user(
 	id INT AUTO_INCREMENT,
 	username VARCHAR(255),
 	password VARCHAR(255),
 	email VARCHAR(255),
 	mobile VARCHAR(255)
-);
+);`
 
-drop table if exists AUTH_ROLE;
+`drop table if exists AUTH_ROLE;
 create table AUTH_ROLE(
 	  id          bigint(20) NOT NULL,
 	  role_name   VARCHAR(255),
 	  description VARCHAR(255)
-);
+);`
 
-drop table if exists oauth_refresh_token;
+`drop table if exists oauth_refresh_token;
 create table oauth_refresh_token(
   token_id        VARCHAR(255),
   token           varbinary(4096),
   authentication  varbinary(4096)
-);
+);`
 
-drop table if exists oauth_code;
+`drop table if exists oauth_code;
 create table oauth_code(
   code            VARCHAR(255),
   authentication  varbinary(4096)
-);
+);`
 
-drop table if exists oauth_approvals;
+`drop table if exists oauth_approvals;
 create table oauth_approvals(
   userId         VARCHAR(255),
   clientId       VARCHAR(255),
@@ -81,9 +80,9 @@ create table oauth_approvals(
   status         VARCHAR(10),
   expiresAt      TIMESTAMP,
   lastModifiedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+);`
 
-drop table if exists ClientDetails;
+`drop table if exists ClientDetails;
 create table ClientDetails(
   appId                  VARCHAR(255) PRIMARY KEY,
   resourceIds            VARCHAR(255),
@@ -96,16 +95,16 @@ create table ClientDetails(
   refresh_token_validity INTEGER,
   additionalInformation  VARCHAR(4096),
   autoApproveScopes      VARCHAR(255)
-);
+);`
 
-create index oauth_access_token_id on oauth_access_token(token_id);
-create index oauth_refresh_token_id on oauth_access_token(token_id);
+`create index oauth_access_token_id on oauth_access_token(token_id);
+create index oauth_refresh_token_id on oauth_access_token(token_id);`
 
 
 
 --START CLIENT CREDENTIAL TABLES--
 
-drop table if exists oauth_client_details;
+`drop table if exists oauth_client_details;
 create table oauth_client_details(
   client_id               VARCHAR(256) PRIMARY KEY,
   resource_ids            VARCHAR(256),
@@ -118,40 +117,40 @@ create table oauth_client_details(
   refresh_token_validity  INTEGER,
   additional_information  VARCHAR(4096),
   autoapprove             VARCHAR(256)
-);
+);`
 
-drop table if exists oauth_client_token;
+`drop table if exists oauth_client_token;
 create table oauth_client_token(
   token_id          VARCHAR(255),
   token             varbinary(4096),
   authentication_id VARCHAR(255),
   username         VARCHAR(255),
   client_id         VARCHAR(255)
-);
+);`
 
-drop table if exists user_role;
+`drop table if exists user_role;
 CREATE TABLE user_role (
   user_id bigint(20) NOT NULL,
   role_id bigint(20) NOT NULL
-);
+);`
 
 -- #Tables for course and students# --
 
-DROP TABLE if exists courses; 
+`DROP TABLE if exists courses; 
 CREATE TABLE courses (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   name VARCHAR(250) NOT NULL,
   code VARCHAR(4) NOT NULL
-);
+);`
 
-DROP TABLE IF EXISTS students;
+`DROP TABLE IF EXISTS students;
 CREATE TABLE students (
   rut VARCHAR(250) NOT NULL,
   name VARCHAR(250) NOT NULL,
   lastname VARCHAR(250) DEFAULT NULL,
   age int DEFAULT NULL,
   courseId int DEFAULT NULL
-);
+);`
 
 -- ############################################################################################# --
 
@@ -159,23 +158,24 @@ CREATE TABLE students (
 -- ACCESS TOKEN VALIDITY = 300 SECOND
 -- REFRESH TOKEN VALIDITY = 1800 SECOND
 -- insert client details [clientId = test & clientSecret = temp]
-INSERT INTO oauth_client_details
+
+`INSERT INTO oauth_client_details
 (client_id, client_secret, scope, authorized_grant_types,
 authorities, access_token_validity, refresh_token_validity)
 VALUES ('test', '$2a$10$qgfrPSuoOvcoTYW1oka1r.XuQ67t9tt6erpZ4pa3/rx4Np0EF.fB6',
 'read,write', 'password,refresh_token,client_credentials,authorization_code',
-'ROLE_TRUSTED_CLIENT', 300, 1800);
+'ROLE_TRUSTED_CLIENT', 300, 1800);`
 
 
 -- USER ROLES
 
-INSERT INTO auth_role(id, role_name, description)
-VALUES (1, 'ROLE_ADMIN', 'Admin User - Has permission to perform admin tasks');
+`INSERT INTO auth_role(id, role_name, description)
+VALUES (1, 'ROLE_ADMIN', 'Admin User - Has permission to perform admin tasks');`
 
-INSERT INTO auth_role(id, role_name, description)
-VALUES (2, 'ROLE_USER', 'CONSULTANT - Has no admin rights');
+`INSERT INTO auth_role(id, role_name, description)
+VALUES (2, 'ROLE_USER', 'CONSULTANT - Has no admin rights');`
 
-INSERT INTO auth_user(id,username,password,email,mobile)
+`INSERT INTO auth_user(id,username,password,email,mobile)
 VALUES (1,'felipe','$2a$10$/1Gl2B/Tjg5.yV.sb62uHeM.pKRViSuwMaQe0GjaiPuaRhBfqTOP6','felipe@admin.com','123456789');`
 
 Ademas el proyecto contiene un YAML de configuracion el cual deberia ser modificado la ruta del h2 file
@@ -266,7 +266,10 @@ Una vez que el proyecto este corriendo en la maquina local , la aplicacion sera 
     "password": "olv2vx105"
     "grant_type":password"
 `
-
+ Authorization : Basic Auth 
+ 
+  *"username": "test"
+   "password": "temp"*
 
 # JSON Respond
 
