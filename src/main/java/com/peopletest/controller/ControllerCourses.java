@@ -1,11 +1,13 @@
 package com.peopletest.controller;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,6 +46,11 @@ public class ControllerCourses {
 		return "Hello World";
 	}
 	
+	/**
+	 * Get Course By Id : It returns the course identified by the given id It returns the course identified by the given id
+	 * @param code
+	 * @return
+	 */
 	@GetMapping(value ="/getCourseById")
 	public ResponseEntity<Courses> getCourseById(@RequestParam String code){
 		
@@ -51,4 +58,23 @@ public class ControllerCourses {
 		return new ResponseEntity<Courses>(respond, HttpStatus.OK);
 	}
 	
+	/**
+	 * Get All Courses : It returns a paginated list of existing courses
+	 * @param code
+	 * @return
+	 */
+	@GetMapping(value ="/getAll")
+	public ResponseEntity<List<Courses>> getCourse(){
+		
+		List<Courses> respond = coursesService.getAll();
+		return new ResponseEntity<List<Courses>>(respond, HttpStatus.OK);
+	}
+	
+//	@DeleteMapping(value ="/deleteById")
+//	public ResponseEntity<Courses> deleteById(@RequestParam String id){
+//		
+//		Courses respond = coursesService.deleteCourseById(id);
+//		return new ResponseEntity<Courses>(respond, HttpStatus.OK);
+//	}
+
 }

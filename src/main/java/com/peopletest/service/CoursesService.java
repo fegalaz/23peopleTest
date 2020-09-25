@@ -11,7 +11,5 @@ public interface CoursesService {
 	
 	Courses findCoursesByCode(String code);
 
-	void deleteCourseById(String id);
-
 	List<Courses> getAll();
 }

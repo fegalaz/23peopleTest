@@ -27,12 +27,6 @@ public class CoursesServiceImpl implements CoursesService {
 		return respond;
 	}
 	
-//	@Override
-//	public void deleteCourseById(String id) {
-//		Boolean respond = coursesRepository.deleteById(id);
-//		return respond;
-//	}
-	
 	@Override
 	public List<Courses> getAll() {
 		List<Courses> respond = coursesRepository.findAll();

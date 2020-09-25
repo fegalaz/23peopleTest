@@ -100,6 +100,24 @@ CREATE TABLE user_role (
   role_id bigint(20) NOT NULL
 );
 
+-- #Tables for course and students# --
+
+DROP TABLE if exists courses; 
+CREATE TABLE courses (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  name VARCHAR(250) NOT NULL,
+  code VARCHAR(4) NOT NULL
+);
+
+DROP TABLE IF EXISTS students;
+CREATE TABLE students (
+  rut VARCHAR(250) NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  lastname VARCHAR(250) DEFAULT NULL,
+  age int DEFAULT NULL,
+  courseId int DEFAULT NULL
+);
+
 -- ############################################################################################# --
 
 -- BASIC AUTH with token time declarationuser_role
